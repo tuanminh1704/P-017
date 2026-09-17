@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Problem Backlog - Team 017</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-tertiary: #f0f2f5;
+            --text-primary: #1f2328;
+            --text-secondary: #656d76;
+            --border-color: #d0d7de;
+            --accent: #0969da;
+            --card-border: #e1e4e8;
+            --code-bg: #f6f8fa;
+            --table-row-even: #fbfcfd;
+            --table-row-hover: #f3f4f6;
+            --shadow: 0 8px 24px rgba(140, 149, 159, 0.15);
+        }
+        [data-theme="dark"] {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+            --accent: #58a6ff;
+            --card-border: #30363d;
+            --code-bg: #161b22;
+            --table-row-even: #12161c;
+            --table-row-hover: #1f242c;
+            --shadow: 0 8px 24px rgba(1, 4, 9, 0.5);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .search-box {
+            padding: 7px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            outline: none;
+            width: 260px;
+        }
+        .theme-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 7px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .container {
+            max-width: 1080px;
+            margin: 24px auto;
+            padding: 36px 48px;
+            background: var(--bg-primary);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        h1, h2, h3, h4 {
+            margin-top: 1.5em;
+            margin-bottom: 0.6em;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        h1 { font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.3em; margin-top: 0; }
+        h2 { font-size: 1.45rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; margin-top: 1.8em; }
+        p { margin-bottom: 1em; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul, ol { margin-bottom: 1em; padding-left: 2em; }
+        li { margin-bottom: 0.35em; }
+        blockquote {
+            border-left: 4px solid var(--accent);
+            background: var(--bg-secondary);
+            padding: 12px 18px;
+            margin: 1em 0;
+            border-radius: 0 6px 6px 0;
+            color: var(--text-secondary);
+        }
+        code {
+            font-family: monospace;
+            font-size: 85%;
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            overflow-x: auto;
+            margin-bottom: 1.2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.4em 0;
+            font-size: 0.92rem;
+            border: 1px solid var(--border-color);
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        th {
+            background-color: var(--bg-secondary);
+            font-weight: 600;
+            border-bottom: 2px solid var(--border-color);
+        }
+        tr:nth-child(even) { background-color: var(--table-row-even); }
+        tr:hover { background-color: var(--table-row-hover); }
+        hr { border: none; border-top: 1px solid var(--border-color); margin: 2.2em 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-title">
+            <span>📋</span>
+            <span>Problem Backlog Preview (Team 017)</span>
+        </div>
+        <div class="header-controls">
+            <input type="text" id="search" class="search-box" placeholder="Tìm kiếm...">
+            <button class="theme-btn" id="themeToggle">🌓 Đổi nền sáng/tối</button>
+        </div>
+    </header>
+
+    <div class="container" id="contentArea">
+        <h1 id="problem-backlog">Problem backlog</h1>
+<p>Những chỗ gặp trong lúc gán nhãn mà <strong>guideline chưa trả lời được</strong>, cộng các pain point về công cụ.</p>
+<p>Ghi ngay khi gặp, kể cả lúc chưa biết xử lý thế nào. Một edge case không được ghi lại thì
+mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn lớn nhất của nhãn không nhất quán.</p>
+<blockquote>
+<p>Các mục bên dưới là <strong>ví dụ</strong>, tên và link CVAT đều giả. Mẫu trống để copy nằm cuối file.</p>
+</blockquote>
+<h2 id="danh-sach">Danh sách</h2>
+<table>
+<thead>
+<tr>
+<th>Mã</th>
+<th>Tóm tắt</th>
+<th>Loại</th>
+<th>Mục guideline</th>
+<th>Trạng thái</th>
+<th>Kết quả</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#p-001">P-001</a></td>
+<td>Người ngồi sau xe máy: box riêng hay gộp với người lái</td>
+<td>Guideline mơ hồ</td>
+<td>§3.2</td>
+<td>✅ Đã chốt</td>
+<td><a href="so-quyet-dinh.md#qđ-001">QĐ-001</a></td>
+</tr>
+<tr>
+<td><a href="#p-002">P-002</a></td>
+<td>Xe bị che khuất hơn một nửa</td>
+<td>Guideline chưa nói tới</td>
+<td>§3.4</td>
+<td>↗️ Hỏi BTC</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-003">P-003</a></td>
+<td>Phải vẽ lại box y hệt qua nhiều frame liên tiếp</td>
+<td>Pain point công cụ</td>
+<td>—</td>
+<td>🗣️ Đang bàn</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-004">P-004</a></td>
+<td>Vật thể bị che khuất/chia cắt thành nhiều mảng rời rạc</td>
+<td>Guideline chưa nói tới</td>
+<td>—</td>
+<td>🔴 Mở</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-005">P-005</a></td>
+<td>Các phụ kiện đi kèm (ăng-ten, ống khói, túi xách, cốc...) có tính vào vật thể</td>
+<td>Guideline chưa nói tới</td>
+<td>—</td>
+<td>🔴 Mở</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-006">P-006</a></td>
+<td>Vật thể ở quá xa, quá mờ không xác định rõ class hoặc ranh giới</td>
+<td>Guideline chưa nói tới</td>
+<td>—</td>
+<td>🔴 Mở</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-007">P-007</a></td>
+<td>Xử lý chồng đè pixel: đối tượng nhỏ nằm lọt trong nền đối tượng khác</td>
+<td>Pain point công cụ</td>
+<td>—</td>
+<td>🔴 Mở</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-008">P-008</a></td>
+<td>Tán cây / nhánh cây đan xen chồng lấn ở sát mép ảnh</td>
+<td>Guideline mơ hồ</td>
+<td>—</td>
+<td>🔴 Mở</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-009">P-009</a></td>
+<td>Vạch kẻ qua đường và vạch sơn trên mặt đường (road)</td>
+<td>Guideline chưa nói tới</td>
+<td>—</td>
+<td>🔴 Mở</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-010">P-010</a></td>
+<td>Định nghĩa cụ thể và phạm vi của class <code>pole</code></td>
+<td>Guideline mơ hồ</td>
+<td>—</td>
+<td>🔴 Mở</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-011">P-011</a></td>
+<td>Người đi bộ chỉ có phụ kiện (balo, túi xách) bị cắt ở mép ảnh (truncated)</td>
+<td>Guideline chưa nói tới</td>
+<td>—</td>
+<td>🔴 Mở</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-012">P-012</a></td>
+<td>Biển báo quay lưng / không nhìn thấy nội dung mặt trước</td>
+<td>Guideline chưa nói tới</td>
+<td>—</td>
+<td>🔴 Mở</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="#p-013">P-013</a></td>
+<td>Xe bị vật thể khác cắt ngang chia thành 2 phần rời rạc</td>
+<td>Guideline chưa nói tới</td>
+<td>—</td>
+<td>🔴 Mở</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Loại</strong></p>
+<table>
+<thead>
+<tr>
+<th>Loại</th>
+<th>Nghĩa là</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Guideline chưa nói tới</td>
+<td>Tình huống không có trong guideline</td>
+</tr>
+<tr>
+<td>Guideline mơ hồ</td>
+<td>Đọc guideline ra được hai cách hiểu trở lên</td>
+</tr>
+<tr>
+<td>Guideline mâu thuẫn</td>
+<td>Hai mục trong guideline nói ngược nhau</td>
+</tr>
+<tr>
+<td>Pain point công cụ</td>
+<td>Guideline rõ, nhưng làm trên CVAT chậm hoặc dễ sai</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trạng thái:</strong> 🔴 Mở · 🗣️ Đang bàn · ↗️ Hỏi BTC · ✅ Đã chốt (trỏ sang QĐ) · 🛠️ Làm tool (trỏ sang <code>source-tool/</code>) · ⚪ Bỏ (ghi lý do)</p>
+<hr />
+<h2 id="p-001">P-001</h2>
+<p><strong>Người ngồi sau xe máy: box riêng hay gộp chung với người lái</strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline mơ hồ</li>
+<li><strong>Mục guideline:</strong> §3.2 — "mỗi người một bounding box"</li>
+<li><strong>Người phát hiện:</strong> @thanh-vien-b · 16/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li>https://cvat.example.com/tasks/12/jobs/101?frame=37 — hai người, gần như chồng khít</li>
+<li>https://cvat.example.com/tasks/12/jobs/101?frame=112 — người ngồi sau chỉ lộ đầu</li>
+<li><strong>Mô tả:</strong> §3.2 nói mỗi người một box, nhưng hình minh hoạ trong guideline lại vẽ một box
+  cho cả xe máy lẫn người trên xe.</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li>Theo câu chữ: người ngồi sau có box <code>nguoi</code> riêng.</li>
+<li>Theo hình minh hoạ: không vẽ box <code>nguoi</code> cho ai đang ngồi trên xe.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> vẽ box riêng và gắn tag <code>can_xem_lai</code> để dễ lọc ra sửa.</li>
+<li><strong>Kết quả:</strong> ✅ <a href="so-quyet-dinh.md#qđ-001">QĐ-001</a></li>
+</ul>
+<h2 id="p-002">P-002</h2>
+<p><strong>Xe bị che khuất hơn một nửa</strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline chưa nói tới</li>
+<li><strong>Mục guideline:</strong> §3.4 — chỉ nói về vật thể bị cắt ở mép ảnh, không nói về bị che</li>
+<li><strong>Người phát hiện:</strong> @thanh-vien-c · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li>https://cvat.example.com/tasks/12/jobs/103?frame=8 — ô tô sau xe buýt, lộ khoảng 30%</li>
+<li>https://cvat.example.com/tasks/12/jobs/103?frame=64 — xe máy sau cột điện, lộ khoảng 50%</li>
+<li><strong>Mô tả:</strong> Không rõ có gán nhãn vật thể bị che không, và nếu có thì box ôm phần nhìn thấy
+  hay ôm cả phần ước lượng bị che.</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li>Bỏ qua khi lộ dưới 50%.</li>
+<li>Luôn gán, box chỉ ôm phần nhìn thấy.</li>
+<li>Luôn gán, box ôm cả phần ước lượng.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> dừng job 103, chuyển sang job khác ít ca che khuất.</li>
+<li><strong>Kết quả:</strong> ↗️ Đã hỏi BTC ngày 18/09/2026, chờ trả lời.</li>
+</ul>
+<h2 id="p-003">P-003</h2>
+<p><strong>Phải vẽ lại box y hệt qua nhiều frame liên tiếp</strong></p>
+<ul>
+<li><strong>Loại:</strong> Pain point công cụ</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @thanh-vien-d · 18/09/2026</li>
+<li><strong>Link CVAT:</strong> https://cvat.example.com/tasks/12/jobs/105?frame=200 — frame 200–260, xe đỗ không di chuyển</li>
+<li><strong>Mô tả:</strong> Ảnh chụp liên tiếp từ camera cố định. Xe đỗ bên đường xuất hiện y nguyên ở hàng chục
+  frame, annotator phải vẽ lại ở từng frame. Ước tính chiếm ~40% thời gian job 105.</li>
+<li><strong>Hướng đang cân nhắc:</strong></li>
+<li>Dùng chế độ <em>Track</em> sẵn có của CVAT — cần thử xem có hợp với dữ liệu dạng ảnh rời không.</li>
+<li>Viết script đọc file export của CVAT, nhân box sang các frame kế tiếp, rồi import lại.</li>
+<li><strong>Kết quả:</strong> 🗣️ Đang bàn. Nếu chọn hướng 2 thì đổi trạng thái sang 🛠️ và làm trong
+  <a href="source-tool/"><code>source-tool/</code></a>.</li>
+</ul>
+<h2 id="p-004">P-004</h2>
+<p><strong>Vật thể bị che khuất/chia cắt thành nhiều mảng rời rạc</strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline chưa nói tới</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @tainguyenhuu2509-droid · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li><code>w1/segmentation/G03/G03_S001.jpg</code> — Tòa nhà (building) bị cây/cột che chia cắt; vỉa hè (sidewalk) bị hàng rào chia thành các phần không dính nhau; ranh giới nối chỉ rộng vài pixel mờ</li>
+<li><code>w1/segmentation/G03/G03_S002.jpg</code> — 'sky', 'building', 'road', 'sidewalk' bị tách thành 2 hoặc nhiều phần riêng biệt</li>
+<li><strong>Mô tả:</strong> Trong semantic segmentation, nhiều đối tượng thuộc cùng một nhãn (building, sidewalk, sky, road) bị đối tượng khác nằm phía trước chắn ngang (như cột, hàng rào, tán cây), làm phân mảnh thành nhiều mảng pixel rời rạc (multipolygon). Chưa rõ có gom chung một nhãn hay vẽ các polygon rời rạc, và các vùng kết nối siêu nhỏ (vài pixel mờ) có tính là nối hay bị cắt đứt.</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li>Vẽ các polygon/mask rời rạc riêng lẻ nhưng gán cùng một class (hỗ trợ multipolygon / disjoint mask).</li>
+<li>Nếu vùng che khuất quá hẹp hoặc chỉ còn vài pixel mờ, vẽ nối liền đè qua (hoặc ước lượng).</li>
+<li>Bỏ qua các mảng nhỏ lẻ bị tách ra nếu diện tích dưới một ngưỡng nhất định.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> Vẽ các polygon rời rạc cùng gán class đó; với các pixel mờ không rõ ràng thì ưu tiên vật thể phía trước (foreground).</li>
+<li><strong>Kết quả:</strong> 🔴 Mở</li>
+</ul>
+<h2 id="p-005">P-005</h2>
+<p><strong>Các phụ kiện đi kèm (ăng-ten, ống khói, túi xách, cốc...) có tính vào vật thể</strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline chưa nói tới</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @tainguyenhuu2509-droid · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li><code>w1/segmentation/G03/G03_S001.jpg</code> — Ống khói, ăng-ten của tòa nhà; các chi tiết nhô ra của xe hơi (car)</li>
+<li><code>w1/segmentation/G03/G03_S002.jpg</code> — Túi xách, cốc cầm trên tay của người đi bộ (pedestrian)</li>
+<li><strong>Mô tả:</strong> Chưa có quy định rõ về việc các phụ kiện gắn liền hoặc được mang bởi đối tượng có được tính vào mask/polygon của đối tượng đó hay không.</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li>Tính toàn bộ phụ kiện gắn liền/mang theo vào mask/box của đối tượng (ví dụ: người bao gồm cả balo, túi xách, cốc cầm tay; toà nhà bao gồm cả ống khói, ăng-ten; xe bao gồm gương chiếu hậu, phụ kiện gắn nóc).</li>
+<li>Chỉ gán phần thân chính, bỏ qua các phụ kiện rời rạc/nhỏ (như ăng-ten, cốc nước).</li>
+<li>Đặt ra ngưỡng kích thước hoặc danh mục phụ kiện được phép tính kèm.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> Tạm thời gán gộp phụ kiện vào đối tượng mang nó nếu dính liền; gắn tag <code>can_xem_lai</code>.</li>
+<li><strong>Kết quả:</strong> 🔴 Mở</li>
+</ul>
+<h2 id="p-006">P-006</h2>
+<p><strong>Vật thể ở quá xa, quá mờ không xác định rõ class hoặc ranh giới</strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline chưa nói tới</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @tainguyenhuu2509-droid · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li><code>w1/segmentation/G03/G03_S001.jpg</code> — Đối tượng ở xa, mờ khó phân biệt car hay truck, 1 toà nhà hay nhiều toà nhà</li>
+<li><code>w1/segmentation/G03/G03_S002.jpg</code> — Các toà nhà ở hậu cảnh quá xa mờ để tách thành từng toà riêng; người đi bộ ở xa quá mờ để nhận diện cấu trúc</li>
+<li><strong>Mô tả:</strong> Các vật thể ở hậu cảnh hoặc xa camera bị suy giảm độ phân giải, nhoè mờ (heavy blur), không thể nhận diện chắc chắn class hoặc ranh giới giữa các cá thể.</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li>Có ngưỡng kích thước tối thiểu (ví dụ: chiều cao/rộng &lt; 10-15 px thì bỏ qua không gán).</li>
+<li>Vẫn cố gắng gán class gần giống nhất theo trực giác/bối cảnh.</li>
+<li>Với building ở xa không tách được thì gộp chung thành một mảng lớn; với xe/người quá mờ không phân biệt được thì bỏ qua hoặc gán nhãn <code>unknown/ignore</code> nếu có.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> Đối với toà nhà ở xa gộp thành 1 mảng lớn; đối với xe/người quá mờ không nhận diện được hình thể thì tạm thời không gán.</li>
+<li><strong>Kết quả:</strong> 🔴 Mở</li>
+</ul>
+<h2 id="p-007">P-007</h2>
+<p><strong>Xử lý chồng đè pixel: đối tượng nhỏ nằm lọt trong nền đối tượng khác</strong></p>
+<ul>
+<li><strong>Loại:</strong> Pain point công cụ</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @tainguyenhuu2509-droid · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li><code>w1/segmentation/G03/G03_S002.jpg</code> — Đèn tín hiệu giao thông (traffic light) nằm gọn lọt bên trong vùng toà nhà (building)</li>
+<li><strong>Mô tả:</strong> Trong semantic segmentation, mỗi pixel chỉ thuộc về đúng 1 class. Khi vẽ polygon cho toà nhà lớn bao trùm cả đèn tín hiệu, làm thế nào để mask của đèn tín hiệu không bị toà nhà đè lên hoặc ngược lại trên CVAT.</li>
+<li><strong>Hướng đang cân nhắc:</strong></li>
+<li>Dùng tính năng điều chỉnh thứ tự lớp (Z-Order / Layer stacking) trên CVAT: đưa layer của <code>traffic_light</code> lên trên <code>building</code>.</li>
+<li>Khi vẽ mask <code>building</code>, đục lỗ (hole) tại vị trí <code>traffic_light</code>.</li>
+<li>Dùng công cụ brush/eraser để kiểm soát ranh giới pixel chính xác khi export.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> Vẽ <code>building</code> trước, sau đó vẽ <code>traffic_light</code> ở layer cao hơn (Z-Order lớn hơn).</li>
+<li><strong>Kết quả:</strong> 🔴 Mở</li>
+</ul>
+<h2 id="p-008">P-008</h2>
+<p><strong>Tán cây / nhánh cây đan xen chồng lấn ở sát mép ảnh</strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline mơ hồ</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @tainguyenhuu2509-droid · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li><code>w1/segmentation/G03/G03_S001.jpg</code> — Ở sát rìa trái, có 1 nhánh của cây khác chèn vào cây chính đang segment</li>
+<li><strong>Mô tả:</strong> Các nhánh cây thuộc 2 cây khác nhau đan xen vào nhau, hoặc một nhánh cây ngoài rìa lọt vào tán cây đang gán nhãn. Khó xác định nhánh đó thuộc cây nào nếu gán nhãn dạng instance segmentation, hoặc có cần tách riêng không trong semantic segmentation.</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li>Nếu là semantic segmentation (chỉ phân loại <code>vegetation</code> / <code>tree</code>): gộp chung toàn bộ thành 1 vùng thực vật duy nhất, không cần phân biệt từng cây.</li>
+<li>Nếu là instance segmentation: chỉ ước lượng theo trục thân cây, nhánh lấn sang thì cắt theo ranh giới dự đoán hoặc gán vào cây chiếm diện tích lớn hơn.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> Nếu cùng class <code>vegetation</code> thì gộp chung vùng mask; nếu cần phân tách cá thể thì cắt theo ranh giới nhìn rõ nhất.</li>
+<li><strong>Kết quả:</strong> 🔴 Mở</li>
+</ul>
+<h2 id="p-009">P-009</h2>
+<p><strong>Vạch kẻ qua đường và vạch sơn trên mặt đường (road)</strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline chưa nói tới</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @tainguyenhuu2509-droid · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li><code>w1/segmentation/G03/G03_S001.jpg</code> — Phần vạch kẻ qua đường (zebra crossing) nằm trên mặt đường</li>
+<li><strong>Mô tả:</strong> Guideline chưa làm rõ các vạch sơn giao thông, vạch kẻ người đi bộ qua đường (crosswalk) có được gộp chung vào class <code>road</code> hay có nhãn riêng (như <code>lane marking</code>, <code>crosswalk</code>).</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li>Gộp toàn bộ vạch kẻ đường vào class <code>road</code>.</li>
+<li>Nếu bộ nhãn có class riêng cho marking/crosswalk thì phải bóc tách riêng.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> Kiểm tra danh sách labels trong task CVAT; nếu không có class riêng về vạch kẻ đường thì toàn bộ thuộc về <code>road</code>.</li>
+<li><strong>Kết quả:</strong> 🔴 Mở</li>
+</ul>
+<h2 id="p-010">P-010</h2>
+<p><strong>Định nghĩa cụ thể và phạm vi của class <code>pole</code></strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline mơ hồ</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @tainguyenhuu2509-droid · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li><code>w1/segmentation/G03/G03_S001.jpg</code> — Cần miêu tả chính xác class <code>pole</code></li>
+<li><strong>Mô tả:</strong> Thiếu mô tả chuẩn xác cho class <code>pole</code>: bao gồm những vật thể hình trụ/cột nào (cột đèn chiếu sáng, cột điện thoại/điện lực, cột biển báo giao thông, cọc rào, thân cây nhỏ có tính không?).</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li>Chỉ tính các cột nhân tạo thẳng đứng có đường kính nhỏ (cột đèn, cột điện, cột biển báo).</li>
+<li>Bao gồm cả cọc rào thấp, cột camera, cột cờ.</li>
+<li>Cột gắn liền với biển báo/đèn giao thông thì tính vào <code>pole</code> hay tính vào <code>traffic sign</code> / <code>traffic light</code>.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> Chỉ gán <code>pole</code> cho các cột nhân tạo dạng thẳng đứng độc lập (cột đèn, cột điện); cột biển báo gán chung hoặc tách theo hướng dẫn hiện tại của task.</li>
+<li><strong>Kết quả:</strong> 🔴 Mở</li>
+</ul>
+<h2 id="p-011">P-011</h2>
+<p><strong>Người đi bộ chỉ có phụ kiện (balo, túi xách) bị cắt ở mép ảnh (truncated)</strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline chưa nói tới</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @tainguyenhuu2509-droid · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li><code>w1/segmentation/G03/G03_S002.jpg</code> — Người đi bộ đeo túi xách sau lưng, cơ thể không chạm mép nhưng túi xách bị cắt ở mép ảnh</li>
+<li><strong>Mô tả:</strong> Khi đánh thuộc tính/tag <code>truncated</code> (bị cắt ở mép ảnh), nếu thân thể người đi bộ vẫn nằm trọn trong ảnh nhưng chỉ có phụ kiện (balo, túi xách) chạm mép ảnh bị cắt một phần thì có đánh dấu đối tượng là <code>truncated</code> không?</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li>Đánh dấu <code>truncated</code> vì phụ kiện là một phần của bounding box / mask người đó.</li>
+<li>Không đánh dấu <code>truncated</code> vì phần cơ thể người (body) vẫn nguyên vẹn bên trong khung hình.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> Đánh dấu <code>truncated</code> và gắn tag <code>can_xem_lai</code> để dễ lọc ra cập nhật lại sau khi có quyết định.</li>
+<li><strong>Kết quả:</strong> 🔴 Mở</li>
+</ul>
+<h2 id="p-012">P-012</h2>
+<p><strong>Biển báo quay lưng / không nhìn thấy nội dung mặt trước</strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline chưa nói tới</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @tainguyenhuu2509-droid · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li><code>w1/bbox_polygon/G03/G03_B025.jpg</code> — Biển báo giao thông quay lưng vào camera, không thấy nội dung mặt trước</li>
+<li><strong>Mô tả:</strong> Trong task bbox / polygon, có những biển báo giao thông hướng mặt sau về phía camera (chỉ nhìn thấy mặt kim loại xám/đen và thanh đỡ, không đọc được nội dung). Chưa rõ có cần vẽ box/polygon cho các biển báo này không, hoặc gán nhãn gì.</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li>Vẫn gán nhãn <code>traffic_sign</code> cho tất cả biển báo kể cả nhìn từ phía sau, vì đó vẫn là vật thể biển báo.</li>
+<li>Bỏ qua không gán, vì mô hình phát hiện biển báo chỉ quan tâm đến biển báo điều khiển giao thông theo chiều nhìn.</li>
+<li>Gán với class chung <code>traffic_sign_back</code> hoặc thêm attribute <code>back_view</code>.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> Tạm thời vẽ box/polygon với class biển báo chung và gắn tag <code>can_xem_lai</code>.</li>
+<li><strong>Kết quả:</strong> 🔴 Mở</li>
+</ul>
+<h2 id="p-013">P-013</h2>
+<p><strong>Xe bị vật thể khác cắt ngang chia thành 2 phần rời rạc (cách tô mask)</strong></p>
+<ul>
+<li><strong>Loại:</strong> Guideline chưa nói tới</li>
+<li><strong>Mục guideline:</strong> —</li>
+<li><strong>Người phát hiện:</strong> @ManhAu1111 · 17/09/2026</li>
+<li><strong>Link CVAT:</strong></li>
+<li>https://cvat.note.transformerlabs.ai/tasks/190/jobs/1613?frame=88 — Đầu ô tô phía sau bị gương của ô tô phía trước cắt ngang chia thành 2 phần</li>
+<li><strong>Mô tả:</strong> Khi gán nhãn segmentation cho ô tô, phần đầu xe phía sau bị gương chiếu hậu của xe phía trước che khuất một phần ngang qua, khiến vùng nhìn thấy của đầu xe bị tách làm 2 mảng không liền nhau. Chưa rõ quy tắc tô mask: tô nối qua (ước lượng) hay chỉ tô phần nhìn thấy, và trên CVAT gom 2 mảng này như thế nào.</li>
+<li><strong>Các cách hiểu:</strong></li>
+<li><em>Chỉ tô phần nhìn thấy (visible)</em>: Dùng công cụ Brush/Mask tô cả 2 mảng rời rạc thuộc cùng 1 object <code>car</code>, không tô đè lên gương xe phía trước. Nếu dùng Polygon thì vẽ 2 polygon rồi Group lại.</li>
+<li><em>Tô ước lượng đè qua (amodal segmentation)</em>: Tô phủ kín đầu xe xuyên qua cả gương, sau đó dựa vào Z-Order/layer để xe phía trước đè lên xe phía sau.</li>
+<li><strong>Xử lý tạm trong lúc chờ:</strong> Chỉ tô phần nhìn thấy thực tế (visible pixels). Dùng công cụ Brush tô cả 2 mảng rời rạc trên cùng 1 object xe; nếu dùng Polygon thì vẽ 2 polygon và ấn <code>G</code> để Group lại; bật attribute <code>occluded</code> nếu có.</li>
+<li><strong>Kết quả:</strong> 🔴 Mở</li>
+</ul>
+<hr />
+<h2 id="mau-e-copy">Mẫu để copy</h2>
+<pre><code class="language-markdown">## P-NNN
+
+**Tóm tắt một dòng**
+
+- **Loại:** Guideline chưa nói tới | Guideline mơ hồ | Guideline mâu thuẫn | Pain point công cụ
+- **Mục guideline:** §
+- **Người phát hiện:** @ · dd/mm/yyyy
+- **Link CVAT:** (bỏ trống nếu không có)
+  - https://…/tasks/&lt;id&gt;/jobs/&lt;id&gt;?frame=&lt;n&gt; — frame này có gì
+- **Mô tả:**
+- **Các cách hiểu:** (với pain point công cụ thì ghi **Hướng đang cân nhắc:**)
+  1.
+  2.
+- **Xử lý tạm trong lúc chờ:**
+- **Kết quả:** 🔴 Mở
+</code></pre>
+<p>Nhớ thêm một dòng vào bảng <strong>Danh sách</strong> ở đầu file.</p>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('themeToggle');
+        toggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        });
+        const searchInput = document.getElementById('search');
+        searchInput.addEventListener('input', (e) => {
+            const q = e.target.value.toLowerCase().trim();
+            document.querySelectorAll('table tbody tr').forEach(r => {
+                r.style.display = (!q || r.innerText.toLowerCase().includes(q)) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
