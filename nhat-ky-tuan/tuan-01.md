@@ -10,24 +10,28 @@
 
 | Thành viên | Vị trí | Phân công tuần này |
 |---|---|---|
-| Nguyễn Văn A (@thanh-vien-a) | Lead | Chia job, chốt edge case, review xác suất 10% mọi job |
-| Trần Thị B (@thanh-vien-b) | Annotator | Job 101, 102 |
-| Lê Văn C (@thanh-vien-c) | Annotator | Job 103, 104 |
-| Phạm Thị D (@thanh-vien-d) | Reviewer · Annotator | Review job 101–104; gán job 105 |
+| Vũ Tuấn Minh (@tuanminh1704) | Lead | Chia job, chốt edge case, review xác suất 10% mọi job |
+| Âu Xuân Mạnh (@ManhAu1111) | Annotator | Job 1613 |
+| Chu Đình Thắng (@thangchudinh1) | Annotator | Job 1612 |
+| Nguyễn Hải Nam (@namng11) | Annotator | Job 1611 |
+| Nguyễn Hữu Tài (@tainguyenhuu2509-droid) | Reviewer · Annotator | Review job 1611,1612,1613; gán job 1610 |
 
-Phạm Thị D vừa review vừa gán, nên job 105 do Lead review.
+Nguyễn Hữu Tài vừa review vừa gán, nên job 1610 do Lead review.
 
 ## Công việc
 
 | # | Nội dung công việc | Annotator | Reviewer | Hoàn thành | Ghi chú |
 |---|---|---|---|---|---|
-| 1 | Job 101 — 250 ảnh, bbox `xe_may` / `o_to` / `nguoi` | @thanh-vien-b | @thanh-vien-d | ✅ 100% | Review trả lại 12 ảnh, đã sửa xong |
-| 2 | Job 102 — 250 ảnh, cùng nhãn | @thanh-vien-b | @thanh-vien-d | 🟡 70% |  |
-| 3 | Job 103 — 250 ảnh, cùng nhãn | @thanh-vien-c | @thanh-vien-d | ⛔ 30% | Dừng, chờ chốt [P-002](../problem-backlog.md#p-002) |
-| 4 | Job 104 — 250 ảnh, cùng nhãn | @thanh-vien-c | @thanh-vien-d | ⬜ 0% | Làm sau job 103 |
-| 5 | Job 105 — 250 ảnh, cùng nhãn | @thanh-vien-d | @thanh-vien-a | 🟡 40% |  |
-| 6 | Đọc lại guideline §3, gom các ca chưa rõ | @thanh-vien-a | — | ✅ 100% | Ra P-001, P-002 |
-| 7 | Rà lại job 101 theo QĐ-001 | @thanh-vien-b | @thanh-vien-d | ✅ 100% | Sửa 37 ảnh người ngồi sau |
+| 1 | Job 1613 — 25 ảnh| @ManhAu1111 | @tuanminh1704 | ✅ 100% | Hoàn thành |
+| 2 | Job 1612 — 25 ảnh | @thangchudinh1 | @tuanminh1704| 🟡 96% | Review trả về 1 ảnh |
+| 3 | Job 1611 — 25 ảnh | @namng11| @tuanminh1704| ✅ 100% |Hoàn thành |
+| 4 | Job 1610 — 25 ảnh | @tainguyenhuu2509-droid | @tuanminh1704 | ✅ 100%  | Hoàn thành |
+| ̀5 | Job 1397 — 25 ảnh| @ManhAu1111 | @tainguyenhuu2509-droid | |  |
+| 6 | Job 1396 — 25 ảnh | @thangchudinh1 | @tainguyenhuu2509-droid| |  |
+| 7 | Job 1395 — 25 ảnh | @namng11| tainguyenhuu2509-droid|  | |
+| 8 | Job 1394 — 25 ảnh | @tuanminh1704 | @tainguyenhuu2509-droid |  |  |
+| 9 | Đọc lại guideline §3, gom các ca chưa rõ | @tuanminh1704 | — |  | |
+
 
 Mức hoàn thành: ✅ xong **và đã qua review** · 🟡 đang làm (ghi %) · ⛔ bị chặn (ghi lý do) · ⬜ chưa bắt đầu
 
