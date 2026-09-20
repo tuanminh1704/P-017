@@ -23,32 +23,31 @@ Nguyễn Hữu Tài vừa review vừa gán, nên job 1610 do Lead review.
 | # | Nội dung công việc | Annotator | Reviewer | Hoàn thành | Ghi chú |
 |---|---|---|---|---|---|
 | 1 | Job 1613 — 25 ảnh| @ManhAu1111 | @tuanminh1704 | ✅ 100% | Hoàn thành |
-| 2 | Job 1612 — 25 ảnh | @thangchudinh1 | @tuanminh1704| 🟡 96% | Review trả về 1 ảnh |
+| 2 | Job 1612 — 25 ảnh | @thangchudinh1 | @tuanminh1704| ✅ 100% | Hoàn thành |
 | 3 | Job 1611 — 25 ảnh | @namng11| @tuanminh1704| ✅ 100% |Hoàn thành |
 | 4 | Job 1610 — 25 ảnh | @tainguyenhuu2509-droid | @tuanminh1704 | ✅ 100%  | Hoàn thành |
-| ̀5 | Job 1397 — 25 ảnh| @ManhAu1111 | @tainguyenhuu2509-droid | |  |
-| 6 | Job 1396 — 25 ảnh | @thangchudinh1 | @tainguyenhuu2509-droid| |  |
-| 7 | Job 1395 — 25 ảnh | @namng11| tainguyenhuu2509-droid|  | |
-| 8 | Job 1394 — 25 ảnh | @tuanminh1704 | @tainguyenhuu2509-droid |  |  |
-| 9 | Đọc lại guideline §3, gom các ca chưa rõ | @tuanminh1704 | — |  | |
+| ̀5 | Job 1397 — 25 ảnh| @ManhAu1111 | @tainguyenhuu2509-droid | ✅ 100% | Hoàn thành |
+| 6 | Job 1396 — 25 ảnh | @thangchudinh1 | @tainguyenhuu2509-droid|✅ 100%  | Hoàn thành |
+| 7 | Job 1395 — 25 ảnh | @namng11| tainguyenhuu2509-droid|✅ 100% | Hoàn thành |
+| 8 | Job 1394 — 25 ảnh | @tuanminh1704 | @tainguyenhuu2509-droid | ✅ 100%  | Hoàn thành |
+| 9 | Đọc lại guideline §3, gom các ca chưa rõ | @tuanminh1704 | — | ✅ 100% | Hoàn thành |
 
 
 Mức hoàn thành: ✅ xong **và đã qua review** · 🟡 đang làm (ghi %) · ⛔ bị chặn (ghi lý do) · ⬜ chưa bắt đầu
 
 ## Tổng kết
 
-- Đã gán: 425 / 1.250 ảnh (34%)
-- Qua review lần đầu: 88% (trả lại 51 ảnh)
-- Edge case mới: P-001, P-002, P-003 — đã chốt P-001 thành [QĐ-001](../so-quyet-dinh.md#qđ-001)
+- Đã gán: 200/200 ảnh (100%)
+- Qua review lần đầu: 13/13 ảnh (100%)
 
 ## Vướng mắc
 
-- P-002 (xe bị che khuất) chưa chốt nên job 103 phải dừng. Lead đã gửi câu hỏi lên BTC.
-- P-003: vẽ lại box y hệt qua các frame liên tiếp mất ~40% thời gian job 105.
-  Đang cân nhắc làm tool trong [`source-tool/`](../source-tool/).
+- Nhóm hoàn thành khá muộn và chậm sát với deadline nên không có nhiều thời gian để review chéo.
+- Mỗi người một job dẫn đến khó có thể học hỏi lẫn nhau.
+- Cần bổ sung thêm tài liệu/quy định cho từng annotation class.
 
 ## Kế hoạch tuần 02
 
-- Chốt P-002, mở lại job 103.
-- Xong job 102, 104, 105.
-- Quyết định có làm tool cho P-003 hay dùng chế độ Track sẵn có của CVAT.
+- Phân chia lại job sao cho hợp lý và có thể học hỏi lẫn nhau.
+- Tổ chức buổi học về cách sử dụng tool.
+- Tăng cường review chéo.
