@@ -24,6 +24,9 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
 | [P-011](#p-011) | Người đi bộ chỉ có phụ kiện (balo, túi xách) bị cắt ở mép ảnh (truncated) | Guideline chưa nói tới | — | 🔴 Mở | — |
 | [P-012](#p-012) | Biển báo quay lưng / không nhìn thấy nội dung mặt trước | Guideline chưa nói tới | — | 🔴 Mở | — |
 | [P-013](#p-013) | Xe bị vật thể khác cắt ngang chia thành 2 phần rời rạc | Guideline chưa nói tới | — | 🔴 Mở | — |
+| [P-014](#p-014) | Điểm Hông (Hip) bị cắt ngang/che khuất bởi dây đai an toàn | Guideline chưa nói tới | §3.3 | 🔴 Mở | — |
+| [P-015](#p-015) | Mắt (Eye) bị che khuất bởi kính râm hoặc gọng kính / kính lóa | Guideline chưa nói tới | §3.1 | 🔴 Mở | — |
+| [P-016](#p-016) | Điểm thân trên bị che khuất hoàn toàn bởi vật thể lớn cầm tay (sách, bìa) | Guideline chưa nói tới | §3.2 | 🔴 Mở | — |
 
 **Loại**
 
@@ -258,6 +261,57 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
   1. *Chỉ tô phần nhìn thấy (visible)*: Dùng công cụ Brush/Mask tô cả 2 mảng rời rạc thuộc cùng 1 object `car`, không tô đè lên gương xe phía trước. Nếu dùng Polygon thì vẽ 2 polygon rồi Group lại.
   2. *Tô ước lượng đè qua (amodal segmentation)*: Tô phủ kín đầu xe xuyên qua cả gương, sau đó dựa vào Z-Order/layer để xe phía trước đè lên xe phía sau.
 - **Xử lý tạm trong lúc chờ:** Chỉ tô phần nhìn thấy thực tế (visible pixels). Dùng công cụ Brush tô cả 2 mảng rời rạc trên cùng 1 object xe; nếu dùng Polygon thì vẽ 2 polygon và ấn `G` để Group lại; bật attribute `occluded` nếu có.
+- **Kết quả:** 🔴 Mở
+
+---
+
+## P-014
+
+**Điểm Hông (Hip) bị che khuất bởi dây đai an toàn**
+
+- **Loại:** Guideline chưa nói tới
+- **Mục guideline:** §3.3
+- **Người phát hiện:** @tainguyenhuu2509-droid · 24/09/2026
+- **Link CVAT:**https://cvat.note.transformerlabs.ai/tasks/382/jobs/2366?frame=0 - Điểm Hông bị che khuất bởi dây đai an toàn
+- **Mô tả:** Guideline §3.3 có hướng dẫn chi dưới bị che bởi vô-lăng, táp-lô nhưng không đề cập vật cản sát người như dây đai an toàn (vắt ngang bụng/hông).
+- **Các cách hiểu:**
+  1. *Ước lượng vị trí khớp háng từ trục đùi và thân trên* — Ghim điểm và đánh `Occluded`. (Hợp lý nhất với Human Pose).
+  2. *Đánh `Outside`* — Nếu coi như không thấy trực tiếp ranh giới khớp.
+- **Xử lý tạm trong lúc chờ:** Đang chờ Mentor phản hồi để chốt luật chung.
+- **Kết quả:** 🔴 Mở
+
+---
+
+## P-015
+
+**Mắt (Eye) bị che khuất bởi kính râm hoặc gọng kính / kính lóa**
+
+- **Loại:** Guideline chưa nói tới
+- **Mục guideline:** §3.1
+- **Người phát hiện:** @tainguyenhuu2509-droid · 24/09/2026
+- **Link CVAT:**https://cvat.note.transformerlabs.ai/tasks/382/jobs/2366?frame=0 - Mắt bị che bởi gọng kính 
+- **Mô tả:** Guideline §3.1 chỉ hướng dẫn điểm mắt đặt ở "tâm đồng tử" hoặc "tâm khe mí" (nếu nhắm), nhưng không hướng dẫn xử lý khi mắt bị che bởi gọng kính lớn, kính râm đen, hoặc kính bị chói sáng.
+- **Các cách hiểu:**
+  1. *Ước lượng tâm đồng tử phía sau kính* — Ghim điểm và đánh `Occluded` (nếu kính trong/gọng nhỏ).
+  2. *Đánh `Outside`* — Nếu kính râm đen kịt hoặc lóa sáng hoàn toàn không thể đoán được vị trí mắt.
+- **Xử lý tạm trong lúc chờ:** Đang chờ Mentor phản hồi để chốt mức độ ước lượng cho phép.
+- **Kết quả:** 🔴 Mở
+
+---
+
+## P-016
+
+**Thân trên bị che khuất bởi vật thể lớn cầm tay (Sách, bìa hồ sơ)**
+
+- **Loại:** Guideline chưa nói tới
+- **Mục guideline:** §3.2
+- **Người phát hiện:** @tuanminh1704 · 24/09/2026
+- **Link CVAT:**https://cvat.note.transformerlabs.ai/tasks/382/jobs/2367?frame=9 - Tài xế cầm 1 quyển sách che kín phía tay bên trái
+- **Mô tả:** Tài xế cầm một tấm bìa/sách rất to che kín hoàn toàn bả vai và khuỷu tay. Model pre-label đang bị lỗi: ghim thẳng các điểm khớp vai/khuỷu tay lên bề mặt của tấm bìa trắng. Guideline §3.3 có cấm ghim chi dưới lên ghế/cần số, nhưng chưa có luật cấm ghim thân trên lên vật thể cầm tay.
+- **Các cách hiểu:**
+  1. *Cố gắng ước lượng vị trí khớp phía sau tấm bìa* — Xóa điểm trên tấm bìa, đặt lại về phía sau và đánh `Occluded`. (Rủi ro sai số lớn do bị che quá rộng).
+  2. *Đánh `Outside` toàn bộ cánh tay bị che* — Vì "bị che đến mức không còn căn cứ ước lượng" (theo §4.1).
+- **Xử lý tạm trong lúc chờ:** Đang chờ Mentor phản hồi để chốt xem che tới mức nào thì được ước lượng (`Occluded`), mức nào thì phải loại bỏ (`Outside`).
 - **Kết quả:** 🔴 Mở
 
 ---
