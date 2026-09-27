@@ -323,9 +323,9 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
 
 - **Loại:** Guideline chưa nói tới
 - **Mục guideline:** §3.2
-- **Người phát hiện:** @[chưa điền] · [chưa điền]
+- **Người phát hiện:** @ManhAu1111 · 25/09/2026
 - **Link CVAT:** 
-  - [chưa điền]
+  - https://cvat.note.transformerlabs.ai/tasks/382/jobs/2369?frame=19 - Người lái mặc áo phao dày che khuất form cơ thể
 - **Mô tả:** Tài xế mặc áo khoác dày (như áo phao, áo gió trùm đầu), các nếp gấp áo làm biến dạng hoàn toàn form cơ thể thực tế. Điểm Vai (Shoulder) và Cùi chỏ (Elbow) rất khó xác định ranh giới xương khớp thực sự.
 - **Các cách hiểu:**
   1. *Ghim ở chính giữa mảng áo phồng* — Coi như áo là một phần của cơ thể (Sai số vật lý lớn).
