@@ -24,9 +24,10 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
 | [P-011](#p-011) | Người đi bộ chỉ có phụ kiện (balo, túi xách) bị cắt ở mép ảnh (truncated) | Guideline chưa nói tới | — | 🔴 Mở | — |
 | [P-012](#p-012) | Biển báo quay lưng / không nhìn thấy nội dung mặt trước | Guideline chưa nói tới | — | 🔴 Mở | — |
 | [P-013](#p-013) | Xe bị vật thể khác cắt ngang chia thành 2 phần rời rạc | Guideline chưa nói tới | — | 🔴 Mở | — |
-| [P-014](#p-014) | Điểm Hông (Hip) bị cắt ngang/che khuất bởi dây đai an toàn | Guideline chưa nói tới | §3.3 | 🔴 Mở | — |
-| [P-015](#p-015) | Mắt (Eye) bị che khuất bởi kính râm hoặc gọng kính / kính lóa | Guideline chưa nói tới | §3.1 | 🔴 Mở | — |
-| [P-016](#p-016) | Điểm thân trên bị che khuất hoàn toàn bởi vật thể lớn cầm tay (sách, bìa) | Guideline chưa nói tới | §3.2 | 🔴 Mở | — |
+| [P-014](#p-014) | Điểm Hông (Hip) bị cắt ngang/che khuất bởi dây đai an toàn | Guideline chưa nói tới | §3.3 | ✅ Đã chốt | [QĐ-014](so-quyet-dinh.md#qđ-014) |
+| [P-015](#p-015) | Mắt (Eye) bị che khuất bởi kính râm hoặc gọng kính / kính lóa | Guideline chưa nói tới | §3.1 | ✅ Đã chốt | [QĐ-015](so-quyet-dinh.md#qđ-015) |
+| [P-016](#p-016) | Điểm thân trên bị che khuất hoàn toàn bởi vật thể lớn cầm tay (sách, bìa) | Guideline chưa nói tới | §3.2 | ✅ Đã chốt | [QĐ-016](so-quyet-dinh.md#qđ-016) |
+| [P-017](#p-017) | Form cơ thể bị biến dạng/che khuất bởi áo khoác dày, áo phao | Guideline chưa nói tới | §3.2 | 🔴 Mở | — |
 
 **Loại**
 
@@ -278,7 +279,7 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
   1. *Ước lượng vị trí khớp háng từ trục đùi và thân trên* — Ghim điểm và đánh `Occluded`. (Hợp lý nhất với Human Pose).
   2. *Đánh `Outside`* — Nếu coi như không thấy trực tiếp ranh giới khớp.
 - **Xử lý tạm trong lúc chờ:** Đang chờ Mentor phản hồi để chốt luật chung.
-- **Kết quả:** 🔴 Mở
+- **Kết quả:** ✅ Đã chốt (Xem [QĐ-014](so-quyet-dinh.md#qđ-014))
 
 ---
 
@@ -295,7 +296,7 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
   1. *Ước lượng tâm đồng tử phía sau kính* — Ghim điểm và đánh `Occluded` (nếu kính trong/gọng nhỏ).
   2. *Đánh `Outside`* — Nếu kính râm đen kịt hoặc lóa sáng hoàn toàn không thể đoán được vị trí mắt.
 - **Xử lý tạm trong lúc chờ:** Đang chờ Mentor phản hồi để chốt mức độ ước lượng cho phép.
-- **Kết quả:** 🔴 Mở
+- **Kết quả:** ✅ Đã chốt (Xem [QĐ-015](so-quyet-dinh.md#qđ-015))
 
 ---
 
@@ -312,6 +313,24 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
   1. *Cố gắng ước lượng vị trí khớp phía sau tấm bìa* — Xóa điểm trên tấm bìa, đặt lại về phía sau và đánh `Occluded`. (Rủi ro sai số lớn do bị che quá rộng).
   2. *Đánh `Outside` toàn bộ cánh tay bị che* — Vì "bị che đến mức không còn căn cứ ước lượng" (theo §4.1).
 - **Xử lý tạm trong lúc chờ:** Đang chờ Mentor phản hồi để chốt xem che tới mức nào thì được ước lượng (`Occluded`), mức nào thì phải loại bỏ (`Outside`).
+- **Kết quả:** ✅ Đã chốt (Xem [QĐ-016](so-quyet-dinh.md#qđ-016))
+
+---
+
+## P-017
+
+**Form cơ thể bị biến dạng/che khuất bởi áo khoác dày, áo phao**
+
+- **Loại:** Guideline chưa nói tới
+- **Mục guideline:** §3.2
+- **Người phát hiện:** @[chưa điền] · [chưa điền]
+- **Link CVAT:** 
+  - [chưa điền]
+- **Mô tả:** Tài xế mặc áo khoác dày (như áo phao, áo gió trùm đầu), các nếp gấp áo làm biến dạng hoàn toàn form cơ thể thực tế. Điểm Vai (Shoulder) và Cùi chỏ (Elbow) rất khó xác định ranh giới xương khớp thực sự.
+- **Các cách hiểu:**
+  1. *Ghim ở chính giữa mảng áo phồng* — Coi như áo là một phần của cơ thể (Sai số vật lý lớn).
+  2. *Ước lượng lùi vào trong* — Ước lượng độ dày của lớp áo để ghim sát vào vị trí xương thịt thật và đánh `Occluded`.
+- **Xử lý tạm trong lúc chờ:** Đang chờ Mentor phản hồi để chốt cách ước lượng với áo phồng.
 - **Kết quả:** 🔴 Mở
 
 ---

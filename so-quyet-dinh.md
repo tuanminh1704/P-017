@@ -15,6 +15,9 @@ cũ được gán theo cách cũ.
 |---|---|---|---|---|
 | [QĐ-001](#qđ-001) | Người ngồi sau xe máy có box `nguoi` riêng | 17/09/2026 | [P-001](problem-backlog.md#p-001) | Hiệu lực |
 | [QĐ-002](#qđ-002) | Reviewer trả nguyên job khi mẫu kiểm có trên 10% ảnh sai | 19/09/2026 | Họp tuần 01 | Hiệu lực |
+| [QĐ-014](#qđ-014) | Dây đai an toàn che hông -> Occluded | 26/09/2026 | [P-014](problem-backlog.md#p-014) | Hiệu lực |
+| [QĐ-015](#qđ-015) | Mắt đeo kính che khuất -> Occluded / Outside tùy mức độ | 26/09/2026 | [P-015](problem-backlog.md#p-015) | Hiệu lực |
+| [QĐ-016](#qđ-016) | Tay cầm sách che thân trên -> Occluded / Outside tùy mức độ | 26/09/2026 | [P-016](problem-backlog.md#p-016) | Hiệu lực |
 
 **Trạng thái:** Hiệu lực · Bị thay bởi QĐ-xxx · Huỷ (ghi lý do)
 
@@ -248,6 +251,50 @@ cũ được gán theo cách cũ.
 - **Quyết định:** Chỉ annotation các pixel nhìn thấy thực tế của object. Nếu cùng một object bị chia thành nhiều vùng nhìn thấy, các vùng đó vẫn thuộc cùng object. Không tô xuyên qua vật thể đang che khuất. Nếu task có attribute `occluded`, đánh dấu tương ứng.
 - **Việc phải làm theo:**
  - [ ] Rà soát và cập nhật các annotation hiện có theo quy định này (@tuanminh1704)
+- **Trạng thái:** Hiệu lực
+
+## QĐ-014
+
+**Dây đai an toàn che hông**
+
+- **Ngày:** 26/09/2026
+- **Người tham gia:** Mentor (chốt), @namng11
+- **Xuất phát từ:** [P-014](problem-backlog.md#p-014)
+- **Bối cảnh:** Dây đai an toàn vắt ngang bụng/hông che khuất điểm Hông (Hip).
+- **Quyết định:** Nếu bị dây đai an toàn che, ước lượng vị trí khớp háng từ trục đùi và thân trên, ghim điểm và đánh `Occluded`.
+- **Việc phải làm theo:**
+  - [ ] Rà soát lại các frame có dây an toàn che hông (@tainguyenhuu2509-droid)
+- **Trạng thái:** Hiệu lực
+
+## QĐ-015
+
+**Mắt đeo kính che khuất (kính cận, kính râm, lóa)**
+
+- **Ngày:** 26/09/2026
+- **Người tham gia:** Mentor (chốt), @namng11
+- **Xuất phát từ:** [P-015](problem-backlog.md#p-015)
+- **Bối cảnh:** Mắt bị che bởi gọng kính lớn, kính râm đen, hoặc kính bị chói sáng.
+- **Quyết định:** 
+  - Đeo kính cận (trong suốt/màu nhẹ) có thể xác định được mắt: Đánh `Occluded`.
+  - Đeo kính râm (màu đen) vẫn xác định được mắt: Đánh `Occluded`.
+  - Kính râm đen hoặc lóa hoàn toàn không xác định được mắt: Đánh `Outside`.
+- **Việc phải làm theo:**
+  - [ ] Báo toàn đội áp dụng luật kính cho các job Face Landmark hiện tại
+- **Trạng thái:** Hiệu lực
+
+## QĐ-016
+
+**Thân trên bị che khuất bởi vật thể lớn cầm tay (sách, bìa)**
+
+- **Ngày:** 26/09/2026
+- **Người tham gia:** Mentor (chốt), @namng11
+- **Xuất phát từ:** [P-016](problem-backlog.md#p-016)
+- **Bối cảnh:** Tài xế cầm sách/bìa che kín vai và khuỷu tay.
+- **Quyết định:** 
+  - Nếu có khả năng đoán được khuỷu tay, cổ tay: Ghim điểm ước lượng sau quyển sách và đánh `Occluded`.
+  - Nếu khó xác định (che quá kín không có căn cứ): Đánh `Outside`.
+- **Việc phải làm theo:**
+  - [ ] Áp dụng cho Human Pose từ nay về sau (@tuanminh1704)
 - **Trạng thái:** Hiệu lực
 ---
 
