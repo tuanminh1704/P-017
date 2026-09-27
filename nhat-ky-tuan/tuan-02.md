@@ -55,3 +55,98 @@ Mức hoàn thành: ✅ xong **và đã qua review** · 🟡 đang làm (ghi %) 
 - Toàn đội tập trung tổng lực sang gán nhãn 60 ảnh của bài toán Face Landmark (Task 2).
 - Các thành viên tự học và áp dụng bám sát bản tóm tắt [Sổ tay gán nhãn Face Landmark](face-landmark-summary.md) vừa biên soạn.
 - Nhóm sẽ push kết quả bài báo cáo này lên git đúng hạn vào tối cuối tuần.
+
+## Status từng thành viên
+
+**Nguyễn Hải Nam (@namng11)**
+
+• **Done — Đã hoàn thành:**
+Hoàn thành 2 job Face Landmark (Job 2374, 2378) | Self-Review xong | Đã hoàn thành Cross-Review cho các thành viên khác.
+
+• **Doing — Đang làm gì:**
+Tự review và sửa lại các annotation bị sai so với guideline.
+
+• **Blocked — Vướng mắc:**
+Chưa có vướng mắc nào trong 2 job cá nhân đã làm.
+
+• **Link — Link code/demo:**
+Không có.
+
+• **Questions — Câu hỏi cho Coach:**
+Không có.
+
+---
+
+**Âu Xuân Mạnh (@ManhAu1111)**
+
+• **Done — Đã hoàn thành:**
+Hoàn thành toàn bộ các job được phân công (Human Pose & Face Landmark) | Self-Review xong | Đã hoàn thành Cross-Review.
+
+• **Doing — Đang làm gì:**
+Tự review và sửa lại các annotation bị sai do chưa bám sát kỹ và chưa hiểu sâu guideline (đã thảo luận và rút kinh nghiệm cùng nhóm).
+
+• **Blocked — Vướng mắc:**
+Trường hợp tài xế mặc áo khoác dày, áo phao làm biến dạng form cơ thể thật (đã ghi nhận thành Issue P-017).
+
+• **Link — Link code/demo:**
+Không có.
+
+• **Questions — Câu hỏi cho Coach:**
+Về case áo khoác dày (P-017), nên ghim điểm ở mặt ngoài của áo phồng hay ước lượng trừ hao lùi vào vị trí xương thịt thật bên trong rồi đánh Occluded?
+
+---
+
+**Vũ Tuấn Minh (@tuanminh1704)**
+
+• **Done — Đã hoàn thành:**
+Hoàn thành toàn bộ các job được phân công (Human Pose & Face Landmark) | Self-Review xong | Đã hoàn thành Cross-Review.
+
+• **Doing — Đang làm gì:**
+Sửa lỗi annotation cá nhân do đọc sót guideline. Đã trao đổi kỹ với nhóm để thống nhất cách làm.
+
+• **Blocked — Vướng mắc:**
+Không còn vướng mắc. Trải nghiệm khó khăn khi thân trên bị sách/bìa che khuất (P-016) đã được Mentor giải đáp và chốt luật.
+
+• **Link — Link code/demo:**
+Không có.
+
+• **Questions — Câu hỏi cho Coach:**
+Không có.
+
+---
+
+**Nguyễn Hữu Tài (@tainguyenhuu2509-droid)**
+
+• **Done — Đã hoàn thành:**
+Hoàn thành toàn bộ các job được phân công (Human Pose & Face Landmark) | Self-Review xong | Đã hoàn thành Cross-Review.
+
+• **Doing — Đang làm gì:**
+Review lại các frame dễ nhầm lẫn và sửa annotation sai lệch do chưa nắm chắc guideline ban đầu.
+
+• **Blocked — Vướng mắc:**
+Không còn vướng mắc. Các trường hợp điểm cơ thể bị dây đai an toàn che (P-014) và mắt bị che bởi kính râm/kính lóa (P-015) đều đã được Mentor giải đáp và chốt luật rõ ràng.
+
+• **Link — Link code/demo:**
+Không có.
+
+• **Questions — Câu hỏi cho Coach:**
+Không có.
+
+---
+
+**Chu Đình Thắng (@thangchudinh1)**
+
+• **Done — Đã hoàn thành:**
+Hoàn thành toàn bộ các job cá nhân được phân công | Self-Review xong | Đã hoàn thành Cross-Review. Lên kế hoạch chia job Face Landmark cho toàn đội.
+
+• **Doing — Đang làm gì:**
+Tự sửa lại annotation cá nhân bị lỗi do chưa bám sát guideline. Hỗ trợ team rà soát lại các case lấn cấn.
+
+• **Blocked — Vướng mắc:**
+Chưa có vướng mắc nào phát sinh. 
+
+• **Link — Link code/demo:**
+Không có.
+
+• **Questions — Câu hỏi cho Coach:**
+Không có.
