@@ -30,6 +30,7 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
 | [P-017](#p-017) | Form cơ thể bị biến dạng/che khuất bởi áo khoác dày, áo phao | Guideline chưa nói tới | §3.2 | 🔴 Mở | — |
 | [P-018](#p-018) | Người đi bộ đang đẩy/kéo vali: Có gộp vali vào Cuboid `pedestrian` không | Guideline mơ hồ | §3 & §6 | 🔴 Mở | — |
 | [P-019](#p-019) | Gán nhãn Cuboid 3D lỡ dùng chế độ `Shape` làm mất ID tracking qua các frame | Pain point công cụ | — | 🔴 Mở | — |
+| [P-020](#p-020) | Xe đầu kéo (`truck`) & Rơ-moóc (`trailer`): Cuboid có được đè/overlap một phần ở vùng khớp mâm xoay không | Guideline chưa nói tới | §3 & §6 | 🔴 Mở | — |
 
 **Loại**
 
@@ -369,6 +370,24 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
   1. *Sử dụng tính năng Merge (phím tắt `M`)*: Chọn Cuboid ở frame 1 và frame tiếp theo để CVAT tự động ghép nối các Shape thành 1 Track hoàn chỉnh.
   2. *Đổi chế độ bằng Switch mode*: Nhấp chuột phải vào object trong bảng Objects bên phải để chuyển từ Shape sang Track.
 - **Xử lý tạm trong lúc chờ:** Dùng công cụ Merge (`M`) gộp các Shape lại thành Track, và luôn chọn tab `Track` trước khi vẽ đối tượng mới.
+- **Kết quả:** 🔴 Mở
+
+---
+
+## P-020
+
+**Xe đầu kéo (`truck`) & Rơ-moóc (`trailer`): Cuboid có được đè/overlap một phần ở vùng khớp mâm xoay không**
+
+- **Loại:** Guideline chưa nói tới
+- **Mục guideline:** §3 & §6 (3D Cuboid Guideline)
+- **Người phát hiện:** @ManhAu1111 · 01/10/2026
+- **Link CVAT:** 
+  - https://cvat.note.transformerlabs.ai/tasks/3d/jobs/3974 — Tổ hợp xe đầu kéo kéo theo rơ-moóc container
+- **Mô tả:** Đối với xe đầu kéo kéo theo thùng rơ-moóc/container phía sau, guideline yêu cầu tách thành 2 nhãn riêng: `truck` (đầu kéo) và `trailer` (thùng kéo). Tuy nhiên tại vị trí mâm xoay khớp nối, mâm của `truck` nằm bên dưới phần bụng sàn trước của `trailer`. Nếu vẽ cuboid ôm đúng thể tích thực tế (3D extent) thì 2 box sẽ bị giao nhau/overlap một khoảng nhỏ ở vùng mâm xoay.
+- **Các cách hiểu:**
+  1. *Cho phép 2 Cuboid overlap một phần ở mâm xoay (Cách của Mạnh)* — Vì mỗi 3D cuboid phải bám sát thể tích vật lý thực tế của từng đối tượng. Mâm xoay thuộc `truck` và sàn rơ-moóc thuộc `trailer` nằm đè lên nhau không gian 3D.
+  2. *Co ngắn box để không đè lên nhau (Cách của Tài)* — Thu nhỏ box `truck` hoặc `trailer` né nhau để giữ 0% overlap giữa 2 box, nhưng rủi ro làm xén thiếu thể tích thật của vật thể.
+- **Xử lý tạm trong lúc chờ:** Vẽ 2 cuboid ôm đúng 3D extent của `truck` và `trailer`, chấp nhận overlap một khoảng nhỏ đúng bằng phần khớp nối mâm xoay. Hỏi Mentor để chốt luật chung.
 - **Kết quả:** 🔴 Mở
 
 ---
