@@ -28,6 +28,8 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
 | [P-015](#p-015) | Mắt (Eye) bị che khuất bởi kính râm hoặc gọng kính / kính lóa | Guideline chưa nói tới | §3.1 | ✅ Đã chốt | [QĐ-015](so-quyet-dinh.md#qđ-015) |
 | [P-016](#p-016) | Điểm thân trên bị che khuất hoàn toàn bởi vật thể lớn cầm tay (sách, bìa) | Guideline chưa nói tới | §3.2 | ✅ Đã chốt | [QĐ-016](so-quyet-dinh.md#qđ-016) |
 | [P-017](#p-017) | Form cơ thể bị biến dạng/che khuất bởi áo khoác dày, áo phao | Guideline chưa nói tới | §3.2 | 🔴 Mở | — |
+| [P-018](#p-018) | Người đi bộ đang đẩy/kéo vali: Có gộp vali vào Cuboid `pedestrian` không | Guideline mơ hồ | §3 & §6 | 🔴 Mở | — |
+| [P-019](#p-019) | Gán nhãn Cuboid 3D lỡ dùng chế độ `Shape` làm mất ID tracking qua các frame | Pain point công cụ | — | 🔴 Mở | — |
 
 **Loại**
 
@@ -331,6 +333,42 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
   1. *Ghim ở chính giữa mảng áo phồng* — Coi như áo là một phần của cơ thể (Sai số vật lý lớn).
   2. *Ước lượng lùi vào trong* — Ước lượng độ dày của lớp áo để ghim sát vào vị trí xương thịt thật và đánh `Occluded`.
 - **Xử lý tạm trong lúc chờ:** Đang chờ Mentor phản hồi để chốt cách ước lượng với áo phồng.
+- **Kết quả:** 🔴 Mở
+
+---
+
+## P-018
+
+**Người đi bộ đang đẩy/kéo vali: Có gộp vali vào Cuboid `pedestrian` không**
+
+- **Loại:** Guideline mơ hồ
+- **Mục guideline:** §3 & §6 (3D Cuboid Guideline)
+- **Người phát hiện:** @ManhAu1111 · 01/10/2026
+- **Link CVAT:** 
+  - https://cvat.note.transformerlabs.ai/tasks/3d/jobs/3974?frame=3 — Người đi bộ đẩy chiếc vali hành lý trên đường
+- **Mô tả:** Trong bài toán 3D Cuboid Annotation, đối tượng người đi bộ đang đẩy/kéo chiếc vali hành lý. Bộ taxonomy bài tập chỉ có 10 class (không có class vali/luggage). Cần làm rõ quy tắc vẽ cuboid cho chiếc vali.
+- **Các cách hiểu:**
+  1. *Gộp vali vào Cuboid nhãn `pedestrian`* — Coi vali là phụ kiện/đồ dùng cá nhân mang theo đi liền với người. Fit cuboid trùm cả người + vali, đảm bảo đáy box bám đất và tâm box nằm ở trung tâm thể tích.
+  2. *Chỉ vẽ Cuboid cho thân người, bỏ qua vali* — Fit cuboid sát theo cơ thể người quan sát được, không kéo rộng box trùm sang vali (vì vali không thuộc 10 class taxonomy).
+- **Xử lý tạm trong lúc chờ:** Vẽ 1 cuboid nhãn `pedestrian` bao trùm người + vali đi kèm sát thân, không tự tạo class mới cho vali.
+- **Kết quả:** 🔴 Mở
+
+---
+
+## P-019
+
+**Gán nhãn Cuboid 3D lỡ dùng chế độ `Shape` làm mất ID tracking qua các frame**
+
+- **Loại:** Pain point công cụ
+- **Mục guideline:** —
+- **Người phát hiện:** @ManhAu1111 · 01/10/2026
+- **Link CVAT:** 
+  - https://cvat.note.transformerlabs.ai/tasks/3d/jobs/3974 — Thao tác gán nhãn 3D Point Cloud Sequence
+- **Mô tả:** Khi gán nhãn chuỗi frame 3D Point Cloud (LiDAR sequence), annotator lỡ chọn chế độ `Shape` thay vì `Track` khi khởi tạo Cuboid. Hệ quả là mỗi frame vật thể mang một ID độc lập hoàn toàn mới, không thể nội suy (interpolation) vị trí di chuyển qua các frame.
+- **Hướng đang cân nhắc:**
+  1. *Sử dụng tính năng Merge (phím tắt `M`)*: Chọn Cuboid ở frame 1 và frame tiếp theo để CVAT tự động ghép nối các Shape thành 1 Track hoàn chỉnh.
+  2. *Đổi chế độ bằng Switch mode*: Nhấp chuột phải vào object trong bảng Objects bên phải để chuyển từ Shape sang Track.
+- **Xử lý tạm trong lúc chờ:** Dùng công cụ Merge (`M`) gộp các Shape lại thành Track, và luôn chọn tab `Track` trước khi vẽ đối tượng mới.
 - **Kết quả:** 🔴 Mở
 
 ---
